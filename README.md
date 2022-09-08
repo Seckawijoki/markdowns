@@ -1,0 +1,13 @@
+## 目录
+- bat
+    - [bat编程扫雷：多选复合if...else语句](./bat/bat编程扫雷：多选复合if...else语句.md)
+    - [bat搭配工具遍历文件使用示例](./bat/bat搭配工具遍历文件使用示例.md)
+    - [bat封装工具函数的简单设计](./bat/bat封装工具函数的简单设计.md)
+- c++
+    - [解决libuv process spawn failed name too long的编译问题](./cpp/解决libuv%20process%20spawn%20failed%20name%20too%20long的编译问题.md)
+- git
+    - [git突发情况的解决方法](./git/git突发情况的解决方法.md)
+- IncrediBuild
+    - [IncrediBuild客户端使用问题记录](./IncrediBuild/IncrediBuild客户端使用问题记录.md)
+- shell
+    - [shell搭配工具遍历文件使用示例](./IncrediBuild/shell搭配工具遍历文件使用示例.md)
