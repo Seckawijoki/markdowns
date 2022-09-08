@@ -5,7 +5,7 @@
 ### 示例
 
 现在以Android SDK的adb工具的使用作为例子。
-我们这里首先有个[functions_adb.bat](../tools/functions_adb.bat)作为工具类的bat文件的代码，里面总共封装了获取连接的设备列表、推送文件、安装apk、启动app共4个函数：
+我们这里首先有个[functions_adb.bat](https://github.com/Seckawijoki/Batch_files/blob/master/tools/functions_adb.bat)作为工具类的bat文件的代码，里面总共封装了获取连接的设备列表、推送文件、安装apk、启动app共4个函数：
 ```bat
 @echo off
 set exeAdb=F:\AndroidSDK\platform-tools\adb.exe

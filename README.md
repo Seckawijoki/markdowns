@@ -10,4 +10,4 @@
 - IncrediBuild
     - [IncrediBuild客户端使用问题记录](./IncrediBuild/IncrediBuild客户端使用问题记录.md)
 - shell
-    - [shell搭配工具遍历文件使用示例](./IncrediBuild/shell搭配工具遍历文件使用示例.md)
+    - [shell搭配工具遍历文件使用示例](./shell/shell搭配工具遍历文件使用示例.md)
