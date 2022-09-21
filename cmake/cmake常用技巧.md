@@ -31,33 +31,33 @@
 ```cmake
 添加单个头文件后，并按头文件相对于当前cmake项目所在目录的路径，进行子文件夹的分组
 function(add_filtered_h filterName fileString )
-	file(GLOB TMP_FILES ${fileString})
-	set(HEADER_FILES ${HEADER_FILES} ${TMP_FILES} PARENT_SCOPE)
-	source_group(${filterName} FILES ${TMP_FILES})
+  file(GLOB TMP_FILES ${fileString})
+  set(HEADER_FILES ${HEADER_FILES} ${TMP_FILES} PARENT_SCOPE)
+  source_group(${filterName} FILES ${TMP_FILES})
 endfunction( add_filtered_h )
 
 #添加单个源文件后，并按源文件相对于当前cmake项目所在目录的路径，进行子文件夹的分组
 function(add_filtered_src filterName fileString )
-	file(GLOB TMP_FILES ${fileString})
-	set(SOURCE_FILES ${SOURCE_FILES} ${TMP_FILES} PARENT_SCOPE)
-	source_group(${filterName} FILES ${TMP_FILES})
+  file(GLOB TMP_FILES ${fileString})
+  set(SOURCE_FILES ${SOURCE_FILES} ${TMP_FILES} PARENT_SCOPE)
+  source_group(${filterName} FILES ${TMP_FILES})
 endfunction( add_filtered_src )
 
 #添加过滤文件夹
 function(add_filtered_std_rooted rootPath relativePath)
-	string(REPLACE "/" "\\" filterPart ${relativePath})
-	include_directories("${rootPath}/${relativePath}")
-	set(PRO_INCLUDE_DIRS  ${PRO_INCLUDE_DIRS} "${rootPath}/${relativePath}" PARENT_SCOPE)
-	add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.h")
-	add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.hpp")
-	add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.inl")
-	add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.cpp")
-	add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.c")
-	add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.cc")
-	if(APPLE_IOS)
-		add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.mm")
-	endif()
-	set(SOURCE_FILES ${SOURCE_FILES} PARENT_SCOPE)
+  string(REPLACE "/" "\\" filterPart ${relativePath})
+  include_directories("${rootPath}/${relativePath}")
+  set(PRO_INCLUDE_DIRS  ${PRO_INCLUDE_DIRS} "${rootPath}/${relativePath}" PARENT_SCOPE)
+  add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.h")
+  add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.hpp")
+  add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.inl")
+  add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.cpp")
+  add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.c")
+  add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.cc")
+  if(APPLE_IOS)
+    add_filtered_src("Source Files\\${filterPart}" "${rootPath}/${relativePath}/*.mm")
+  endif()
+  set(SOURCE_FILES ${SOURCE_FILES} PARENT_SCOPE)
 endfunction(add_filtered_std_rooted)
 ```
 
@@ -86,15 +86,15 @@ function(writeBuildTime)
     get_filename_component(szDir ${exeGit} DIRECTORY)
     string(FIND "${exeGit}" "cmd/git.exe" index)
     if (index GREATER_EQUAL 0)
-	  # 如果git.exe的路径是在git安装文件夹的cmd目录下，则将其转到bin目录下
+    # 如果git.exe的路径是在git安装文件夹的cmd目录下，则将其转到bin目录下
       set(exeSh ${szDir}/../bin/sh.exe)
     else()
       set(exeSh ${szDir}/sh.exe)
     endif()
-	# 转换成Windows路径使用的反斜杠
+  # 转换成Windows路径使用的反斜杠
     string(REPLACE ${exeSh} "\/" "\\" exeSh)
     add_custom_command(TARGET ${APP_NAME} PRE_BUILD
-      COMMAND $<$<CONFIG:RELEASE>:${exeSh}> ARGS write_build_time.sh
+      COMMAND ${exeSh} ARGS write_build_time.sh
     )
   endif()
 endfunction()
@@ -177,29 +177,29 @@ add_custom_command(TARGET ${APP_NAME} PRE_BUILD
 
 
 ### 正则表达式不使用的一些语法和字符
-~~\s~~：匹配所有空格字符
+~~\s~~：匹配所有空格字符    
 ~~{}~~：量词符号
 
 ## VSCode上配置的Snippet
 VSCode的配置Snippets（[设置步骤参考](https://juejin.cn/post/6844903795663568910)）来完成一键输入的效果，提高编写效率。
 ```json
 {
-	"message variable": {
-		"scope": "CMakeLists.txt",
-		"prefix": "msgv",
-		"body": [
-			"message(NOTICE \"$CLIPBOARD = ${$CLIPBOARD}\")",
-		],
-		"description": "打印复制的变量"
-	},
+  "message variable": {
+    "scope": "CMakeLists.txt",
+    "prefix": "msgv",
+    "body": [
+      "message(NOTICE \"$CLIPBOARD = ${$CLIPBOARD}\")",
+    ],
+    "description": "打印复制的变量"
+  },
 
-	"message": {
-		"scope": "CMakeLists.txt",
-		"prefix": "msg",
-		"body": [
-			"message(NOTICE \"$1\")",
-		],
-		"description": "打印并输入内容"
-	},
+  "message": {
+    "scope": "CMakeLists.txt",
+    "prefix": "msg",
+    "body": [
+      "message(NOTICE \"$1\")",
+    ],
+    "description": "打印并输入内容"
+  },
 }
 ```
