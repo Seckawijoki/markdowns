@@ -33,12 +33,14 @@
 当include_directories中的某些路径，所包含的头文件比较少时，可直接在C++项目中，将所有#include该头文件的地方，在左边拼接上一层该头文件所在的目录，此时即可将cmake中include_directories的这行路径去掉。代码示例如下：
 
 ###### C++文件：
-~~`#include "Prerequisites.h"`~~
+~~`#include "Prerequisites.h"`~~  
 **`#include "Config/Prerequisites.h"`**
 
 ###### CMake文件：
-~~`include_diretories(${PROJECT_COMMON_DIR}/Core/Config)`~~
+~~`include_diretories(${PROJECT_COMMON_DIR}/Core/Config)`~~  
 **`include_diretories(${PROJECT_COMMON_DIR}/Core)`**
+
+> 这种改动，可以通过编写一个脚本来批量替换
 
 ### 改动工程目录结构
 
