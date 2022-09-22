@@ -3,18 +3,18 @@
 - [说明](#说明)
 - [环境](#环境)
 - [封装的函数](#封装的函数)
-	- [Visual Studio工程添加文件](#visual-studio工程添加文件)
-		- [添加文件与分组](#添加文件与分组)
-		- [改写文件](#改写文件)
-	- [寻找sh.exe来调用shell脚本](#寻找shexe来调用shell脚本)
+  - [Visual Studio工程添加文件](#visual-studio工程添加文件)
+    - [添加文件与分组](#添加文件与分组)
+    - [改写文件](#改写文件)
+  - [寻找sh.exe来调用shell脚本](#寻找shexe来调用shell脚本)
 - [Qt项目](#qt项目)
-	- [通用配置](#通用配置)
-	- [转换翻译文件](#转换翻译文件)
-	- [跳过自动UIC的文件](#跳过自动uic的文件)
+  - [通用配置](#通用配置)
+  - [转换翻译文件](#转换翻译文件)
+  - [跳过自动UIC的文件](#跳过自动uic的文件)
 - [小技巧](#小技巧)
-	- [读写系统变量](#读写系统变量)
-	- [按VS解决方案配置添加生成事件](#按vs解决方案配置添加生成事件)
-	- [正则表达式不使用的一些语法和字符](#正则表达式不使用的一些语法和字符)
+  - [读写系统变量](#读写系统变量)
+  - [按VS解决方案配置添加生成事件](#按vs解决方案配置添加生成事件)
+  - [正则表达式不使用的一些语法和字符](#正则表达式不使用的一些语法和字符)
 - [VSCode上配置的Snippet](#vscode上配置的snippet)
 
 ## 说明
@@ -30,14 +30,14 @@
 #### 添加文件与分组
 ```cmake
 添加单个头文件后，并按头文件相对于当前cmake项目所在目录的路径，进行子文件夹的分组
-function(add_filtered_h filterName fileString )
+function(add_filtered_h filterName fileString)
   file(GLOB TMP_FILES ${fileString})
   set(HEADER_FILES ${HEADER_FILES} ${TMP_FILES} PARENT_SCOPE)
   source_group(${filterName} FILES ${TMP_FILES})
 endfunction( add_filtered_h )
 
 #添加单个源文件后，并按源文件相对于当前cmake项目所在目录的路径，进行子文件夹的分组
-function(add_filtered_src filterName fileString )
+function(add_filtered_src filterName fileString)
   file(GLOB TMP_FILES ${fileString})
   set(SOURCE_FILES ${SOURCE_FILES} ${TMP_FILES} PARENT_SCOPE)
   source_group(${filterName} FILES ${TMP_FILES})
@@ -84,21 +84,17 @@ function(writeBuildTime)
   find_program(exeGit git)
   if (exeGit)
     get_filename_component(szDir ${exeGit} DIRECTORY)
-    string(FIND "${exeGit}" "cmd/git.exe" index)
-    if (index GREATER_EQUAL 0)
-    # 如果git.exe的路径是在git安装文件夹的cmd目录下，则将其转到bin目录下
-      set(exeSh ${szDir}/../bin/sh.exe)
-    else()
-      set(exeSh ${szDir}/sh.exe)
-    endif()
-  # 转换成Windows路径使用的反斜杠
-    string(REPLACE ${exeSh} "\/" "\\" exeSh)
+    # 设置git-bash.exe的路径
+    set(exeGitBash ${szDir}/../git-bash.exe)
+    # 转换成Windows路径使用的反斜杠
+    string(REPLACE ${exeGitBash} "\/" "\\" exeGitBash)
     add_custom_command(TARGET ${APP_NAME} PRE_BUILD
-      COMMAND ${exeSh} ARGS write_build_time.sh
+      COMMAND ${exeGitBash} ARGS write_build_time.sh
     )
   endif()
 endfunction()
 ```
+> 避免使用sh.exe来运行shell脚本。在项目使用IncrediBuild进行编译的话，会在链接exe开始前卡住Visual Studio。
 
 ## Qt项目
 

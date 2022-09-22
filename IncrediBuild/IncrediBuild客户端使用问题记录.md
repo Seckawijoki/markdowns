@@ -20,6 +20,10 @@
   - [9.VS的F5开始调试后，再次显示大量项目需要编译](#9vs的f5开始调试后再次显示大量项目需要编译)
     - [情形](#情形-1)
     - [解决](#解决-1)
+  - [10.链接阶段无法停止](#10链接阶段无法停止)
+    - [无法解决的几个操作：](#无法解决的几个操作)
+      - [~~重新打开Visual Studio~~](#重新打开visual-studio)
+      - [~~Restart IncrediBuild Agent Service~~](#restart-incredibuild-agent-service)
 
 ## 说明
 本文收集一些在少数情况下，客户端遇到的一些问题的解决方法。（持续更新）
@@ -76,7 +80,7 @@
 ### 8.无法启动联编
 
 #### 情形
-启动IB的Build遇到如下弹框，导致无法编译
+启动IB的Build遇到如下弹框，导致无法编译 
 > Maximum number of concurrent builds reached
 
 #### 解决
@@ -90,3 +94,17 @@
 
 #### 解决
 这时需要IB的Rebuild来重置项目状态。
+
+### 10.链接阶段无法停止
+
+打开任务管理器删除进程IncrediBuild Build Helper
+
+#### 无法解决的几个操作：
+
+##### ~~重新打开Visual Studio~~
+该操作不会终止编译，再次编译会遇到以下问题：
+>> Cannot create file: F:\sndbx\miniGame\Projects\vs2019-win32-Editor-develop\PredictedInputCache_MiniStudio_Debug_Win32.dat: 另一个程序正在使用此文件，进程无法访问。 (32)
+删除该文件时，会得知被IncrediBuild Build System占用而无法删除
+
+##### ~~Restart IncrediBuild Agent Service~~
+该操作也不会中断编译
