@@ -24,6 +24,7 @@
     - [无法解决的几个操作：](#无法解决的几个操作)
       - [~~重新打开Visual Studio~~](#重新打开visual-studio)
       - [~~Restart IncrediBuild Agent Service~~](#restart-incredibuild-agent-service)
+  - [11.Failed to start build](#11failed-to-start-build)
 
 ## 说明
 本文收集一些在少数情况下，客户端遇到的一些问题的解决方法。（持续更新）
@@ -108,3 +109,9 @@
 
 ##### ~~Restart IncrediBuild Agent Service~~
 该操作也不会中断编译
+
+### 11.Failed to start build
+
+此时启动IncrediBuild，VS面临超过10min的无响应。
+重启电脑以解决。
+![Failed to start build](./pic/failed_to_start_build.jpg "Failed to start build")

@@ -155,7 +155,7 @@ set_property(SOURCE <file> PROPERTY SKIP_AUTOUIC ON)
 
 ### 读写系统变量
 变量名规则使用``ENV{变量名字}``的形式。
-> [参考官方说明。](https://cmake.org/cmake/help/latest/variable/ENV.html)
+> [参考官方文档](https://cmake.org/cmake/help/latest/variable/ENV.html)
 
 ### 按VS解决方案配置添加生成事件
 
@@ -163,7 +163,7 @@ set_property(SOURCE <file> PROPERTY SKIP_AUTOUIC ON)
 来实现解决方案配置分别添加生成事件。
 
 存在多个配置方案时，直接拼接相同格式的代码，类似多个if语句块连写。
-
+> [参考官方文档](https://cmake.org/cmake/help/v3.17/manual/cmake-generator-expressions.7.html#variable-queries)
 ```cmake
 add_custom_command(TARGET ${APP_NAME} PRE_BUILD
   COMMAND $<$<CONFIG:Release>:${RELEASE_COMMAND}$<CONFIG:Debug>:${DEBUG_COMMAND}> ARGS ${someArgs}
