@@ -26,7 +26,7 @@
 ### 1.常用语句
 
 #### 数组拼接与遍历
-```shell
+```bash
 array[${#array[*]}]=123
 array[${#array[*]}]=abc
 array[${#array[*]}]="string"
@@ -36,7 +36,7 @@ do
 done
 ```
 #### 字符串拼接与遍历
-```shell
+```bash
 paths="$paths header/"
 paths="$paths include/"
 for (( i = 0; i < ${#paths[*]}; ++i ))
@@ -45,27 +45,27 @@ do
 done
 ```
 #### 递归查找文件
-```shell
+```bash
 find ./ -name "*.*"
 ```
 #### 递归查找多种后缀的文件
-```shell
+```bash
 find ./ -regex ".*\.\(sh\|md\)"
 ```
 #### 将命令行输出结果保存到变量中
-```shell
+```bash
 szResult=`file --mime-encoding README.md`
 echo $szResult
 ```
 或：
-```shell
+```bash
 szResult=$(file --mime-encoding README.md)
 echo $szResult
 ```
 #### 获取上一条命令的运行结果
 使用`$?`获取数值结果。与获取输出结果不同。
 #### 字符串匹配判断
-```shell
+```bash
 szResult=`file --mime-encoding README.md`
 hasUTF8=`echo $szResult | awk '{print match($0, utf-8)}'`
 echo $hasUTF8
@@ -75,7 +75,7 @@ then
 fi
 ```
 #### 文件或文件夹判断
-```shell
+```bash
 if test -f $file
 then
     echo $file is a file.
@@ -89,7 +89,7 @@ fi
 
 #### 遍历一级文件
 > 需要同时遍历文件夹时，通配符改为`*`
-```shell
+```bash
 for file in *.*
 do
     echo $file
@@ -98,7 +98,7 @@ done
 
 #### 递归遍历文件
 > 需要同时遍历文件夹时，通配符改为`*`
-```shell
+```bash
 for file in `find ./ -name "*.*"` 
 do
     echo $file
@@ -110,7 +110,7 @@ done
 #### 批量转码
 例如，我们需要将UTF-8的h文件和cpp文件转换成ascii。
 这里我们需要从`$?`获取`iconv`命令的运行结果来判断，是否运行成功，避免仅转换到半截文本。
-```shell
+```bash
 szRootPath=./
 szFileFilter=".*\.\(h\|cpp\)"
 for file in `find $szRootPath -regex "$szFileFilter"`

@@ -104,7 +104,7 @@
 
 ##### ~~重新打开Visual Studio~~
 该操作不会终止编译，再次编译会遇到以下问题：
->> Cannot create file: F:\sndbx\miniGame\Projects\vs2019-win32-Editor-develop\PredictedInputCache_MiniStudio_Debug_Win32.dat: 另一个程序正在使用此文件，进程无法访问。 (32)
+> Cannot create file: F:\sndbx\miniGame\Projects\vs2019-win32-Editor-develop\PredictedInputCache_MiniStudio_Debug_Win32.dat: 另一个程序正在使用此文件，进程无法访问。 (32)
 删除该文件时，会得知被IncrediBuild Build System占用而无法删除
 
 ##### ~~Restart IncrediBuild Agent Service~~
@@ -113,5 +113,5 @@
 ### 11.Failed to start build
 
 此时启动IncrediBuild，VS面临超过10min的无响应。
-重启电脑以解决。
+重启电脑以解决。    
 ![Failed to start build](./pic/failed_to_start_build.jpg "Failed to start build")

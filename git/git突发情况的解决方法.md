@@ -43,7 +43,7 @@ Windows 10 Professional
 先大致了解下，所需要频繁用到的一些命令
 > 附：[在网页上练习分支操作](https://learngitbranching.js.org/?locale=zh_CN&NODEMO)
 ### git stash
-```shell
+```bash
 # 贮藏本地修改的文件，包括新增文件
 git stash -u -m "my message"
 
@@ -59,13 +59,13 @@ git stash apply stash@{1}
 ```
 
 ### git fetch
-```shell
+```bash
 # 例如在develop分支中，拉取main分支的代码
 git fetch origin main:main
 ```
 
 ### git branch
-```shell
+```bash
 # 显示本地的所有分支
 git branch
 
@@ -89,7 +89,7 @@ git branch -m develop
 ```
 
 ### git checkout
-```shell
+```bash
 # 切换到develop分支
 git checkout develop
 
@@ -107,7 +107,7 @@ git checkout -- .
 ```
 
 ### git reset
-```shell
+```bash
 # 撤销最近一次的提交
 git reset HEAD~1
 
@@ -116,7 +116,7 @@ git reset HEAD~1 --soft
 ```
 
 ### git restore
-```shell
+```bash
 # 回滚当前分支修改过的文件（不包括新增）
 git restore .
 ```
@@ -132,7 +132,7 @@ git restore .
 从某一个稳定的历史提交版本，或某个稳定的分支，创建新建分支来继续进行工作  
 
 #### 关键命令
-```shell
+```bash
 # 从确人为稳定版本的commit hash为3d5cb75d8的版本创建分支stable，并切换到此分支
 git checkout -b stable 3d5cb75d8
 ```
@@ -147,7 +147,7 @@ git checkout -b stable 3d5cb75d8
 后续在主模块处理好问题后，可使develop重定基（rebase）到main分支上。
 
 #### 关键命令
-```shell
+```bash
 git checkout main
 
 # 缺失的文件在主模块main分支的提交a20d551ded上，将其cherry-pick过来
@@ -160,7 +160,7 @@ git reset HEAD~1
 ```
 此时编译完如有需要合并的某个提交，可再按上述操作进行。
 主模块处理好之后，可执行以下操作来使develop与main同步
-```shell
+```bash
 git checkout develop
 git rebase develop
 ```
@@ -174,7 +174,7 @@ git rebase develop
 从某个出现问题的日期至最新代码的这部分提交中，可以按二分法的步骤依次从选定范围的中间提交记录进行逐步定位
 
 #### 关键命令
-```shell
+```bash
 # 从提交记录b0508b937e中创建新分支review，并切换过去
 git checkout -b review b0508b937e
 
@@ -182,7 +182,7 @@ git checkout -b review b0508b937e
 git merge 3a3fc3576be
 ```
 处理好bug后的一些收尾工作
-```shell
+```bash
 # 处理好bug后，删除创建的分支
 git branch -d review
 

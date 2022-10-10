@@ -6,7 +6,7 @@
   - [Visual Studio工程添加文件](#visual-studio工程添加文件)
     - [添加文件与分组](#添加文件与分组)
     - [改写文件](#改写文件)
-  - [寻找sh.exe来调用shell脚本](#寻找shexe来调用shell脚本)
+  - [调用shell脚本](#调用shell脚本)
 - [Qt项目](#qt项目)
   - [通用配置](#通用配置)
   - [转换翻译文件](#转换翻译文件)
@@ -77,7 +77,7 @@ function(writeBuildTime szFilePath)
 endfunction()
 ```
 
-### 寻找sh.exe来调用shell脚本
+### 调用shell脚本
 > 需要配置好git.exe的环境变量
 ```cmake
 function(writeBuildTime)
