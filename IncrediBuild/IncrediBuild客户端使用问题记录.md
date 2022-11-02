@@ -25,6 +25,8 @@
       - [~~重新打开Visual Studio~~](#重新打开visual-studio)
       - [~~Restart IncrediBuild Agent Service~~](#restart-incredibuild-agent-service)
   - [11.Failed to start build](#11failed-to-start-build)
+  - [12.链接阶段死机](#12链接阶段死机)
+  - [13.启动编译就卡机](#13启动编译就卡机)
 
 ## 说明
 本文收集一些在少数情况下，客户端遇到的一些问题的解决方法。（持续更新）
@@ -115,3 +117,12 @@
 此时启动IncrediBuild，VS面临超过10min的无响应。
 重启电脑以解决。    
 ![Failed to start build](./pic/failed_to_start_build.jpg "Failed to start build")
+
+### 12.链接阶段死机
+
+下次启动编译前，将``Agent Settings``->``Visual Studio Builds``->``Advanced``中的``Limit concurrent PDB file instances to XX``关闭，进行一次成功的编译后，再次打开。
+
+### 13.启动编译就卡机
+
+启动Build就卡机，或是打开Agent Settings进行restart卡住界面。
+此时需要重启来解决。
