@@ -11,7 +11,7 @@
     - [git突发情况的解决方法（持续更新）](./git/git突发情况的解决方法.md)
 - IncrediBuild
     - [IncrediBuild客户端使用问题记录（持续更新）](./IncrediBuild/IncrediBuild客户端使用问题记录.md)
-- shell
-    - [shell搭配工具遍历文件使用示例](./shell/shell搭配工具遍历文件使用示例.md)
 - Qt
     - [实现拖入文件到QtTreePropertyBrowser中的属性转成字符串的方法](./qt/实现拖入文件到QtTreePropertyBrowser中的属性转成字符串的方法.md)
+- shell
+    - [shell搭配工具遍历文件使用示例](./shell/shell搭配工具遍历文件使用示例.md)
