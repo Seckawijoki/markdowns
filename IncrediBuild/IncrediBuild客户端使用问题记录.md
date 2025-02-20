@@ -7,10 +7,10 @@
     - [操作](#操作)
     - [缺陷](#缺陷)
   - [2.自己的电脑参与联合编译的CPU过多](#2自己的电脑参与联合编译的cpu过多)
-    - [（1）减少本地参与联编的CPU](#1减少本地参与联编的cpu)
-    - [（2）减少参与其它机子联编的CPU](#2减少参与其它机子联编的cpu)
+    - [1）减少本地参与联编的CPU](#1减少本地参与联编的cpu)
+    - [2）减少参与其它机子联编的CPU](#2减少参与其它机子联编的cpu)
   - [3.自动更新被取消](#3自动更新被取消)
-  - [4.最终生成exe的过程链接越来越慢](#4最终生成exe的过程链接越来越慢)
+  - [4.最终生成exe的链接过程慢](#4最终生成exe的链接过程慢)
   - [5.无限链接](#5无限链接)
   - [6.断网后导致IncrediBuild仅自己的机子参与](#6断网后导致incredibuild仅自己的机子参与)
   - [7.仅有自己的机子进行编译](#7仅有自己的机子进行编译)
@@ -21,18 +21,19 @@
     - [情形](#情形-1)
     - [解决](#解决-1)
   - [10.链接阶段无法停止](#10链接阶段无法停止)
-    - [无法解决的几个操作：](#无法解决的几个操作)
-      - [~~重新打开Visual Studio~~](#重新打开visual-studio)
-      - [~~Restart IncrediBuild Agent Service~~](#restart-incredibuild-agent-service)
   - [11.Failed to start build](#11failed-to-start-build)
   - [12.链接阶段死机](#12链接阶段死机)
   - [13.启动编译就卡机](#13启动编译就卡机)
+  - [14.总是有不同的obj not found的报错](#14总是有不同的obj-not-found的报错)
+  - [14.输出窗口乱码](#14输出窗口乱码)
 
 ## 说明
 本文收集一些在少数情况下，客户端遇到的一些问题的解决方法。（持续更新）
 
 ## 运行环境
-- Windows 10 Professional、IncrediBuild 9.6.6、Visual Studio 2019 Community
+- Windows 10 Professional
+- IncrediBuild 9.6.6
+- Visual Studio 2019 Community
 - 特大C++项目
 
 ## 问题记录
@@ -57,18 +58,18 @@
 
 ### 2.自己的电脑参与联合编译的CPU过多
 
-#### （1）减少本地参与联编的CPU
+#### 1）减少本地参与联编的CPU
 在``Agent Settings``->``Agent``->``CPU Utilization``->``CPU Utilization - when acting as Initiator``中，将~~Single CPU, 10 Core Hyperthreading Enabled~~更改为``User Defined``，并将下方的``Utilize 20 logical core(s)``中间的值改低
 
-#### （2）减少参与其它机子联编的CPU
+#### 2）减少参与其它机子联编的CPU
 在``Agent Settings``->``Agent``->``CPU Utilization``->``CPU Utilization - when acting as Helper``中，勾选``When acting as Helper utilize up to XX cores``，并设置一个合适的值
 
 ### 3.自动更新被取消
 工作中遇到IncrediBuild的自动更新的弹窗，而自己恰好鼠标在Cancel按钮的位置，点击了左键取消。
 可在``右键任务栏图标IncrediBuild Agent``中，看到顶部隐藏的``Update Version``，点击即可自动更新。
 
-### 4.最终生成exe的过程链接越来越慢
-定期clean清理缓存解决
+### 4.最终生成exe的链接过程慢
+在``Agent Settings``->``Visual Studio Builds``->``General``中，去掉~~Allow linking steps to run in parallel locally~~。
 
 ### 5.无限链接
 偶尔有遇到种情况，最终链接的exe经过了一个午饭、午休或下午饭，链接了半个小时、2个小时，还没有链接完。
@@ -102,16 +103,6 @@
 
 打开任务管理器删除进程IncrediBuild Build Helper
 
-#### 无法解决的几个操作：
-
-##### ~~重新打开Visual Studio~~
-该操作不会终止编译，再次编译会遇到以下问题：
-> Cannot create file: F:\sndbx\miniGame\Projects\vs2019-win32-Editor-develop\PredictedInputCache_MiniStudio_Debug_Win32.dat: 另一个程序正在使用此文件，进程无法访问。 (32)
-删除该文件时，会得知被IncrediBuild Build System占用而无法删除
-
-##### ~~Restart IncrediBuild Agent Service~~
-该操作也不会中断编译
-
 ### 11.Failed to start build
 
 此时启动IncrediBuild，VS面临超过10min的无响应。
@@ -126,3 +117,14 @@
 
 启动Build就卡机，或是打开Agent Settings进行restart卡住界面。
 此时需要重启来解决。
+
+### 14.总是有不同的obj not found的报错
+- 编译独立模块，再编译总模块
+查看obj是否在工程中存在。如果不存在，可以先对该模块进行编译，再进行总模块的编译。
+- 更新Windows系统
+如果一次全新的编译，总是出现多次不同的obj not found的情况，可进行Windows系统的更新。
+
+
+### 14.输出窗口乱码
+- 安装英语包
+在Outputs或Projects/XXX Project的输出信息中，存在乱码，安装英语语言包进行解决
