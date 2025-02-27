@@ -1,11 +1,11 @@
 
-> ����  
-> [bat��������bat�ļ��еĺ�����ȡ����ֵ�ķ���](https://stackoverflow.com/questions/11481150/batch-file-call-sub-batch-file-to-pass-n-paramenters-and-return-without-use-of-f/25249059)
+> 引用  
+> [bat调用其它bat文件中的函数获取返回值的方法](https://stackoverflow.com/questions/11481150/batch-file-call-sub-batch-file-to-pass-n-paramenters-and-return-without-use-of-f/25249059)
 
-### ʾ��
+### 示例
 
-������Android SDK��adb���ߵ�ʹ����Ϊ���ӡ�
-�������������и�[functions_adb.bat](https://github.com/Seckawijoki/Batch_files/blob/master/tools/functions_adb.bat)��Ϊ�������bat�ļ��Ĵ��룬�����ܹ���װ�˻�ȡ���ӵ��豸�б��������ļ�����װapk������app��4��������
+现在以Android SDK的adb工具的使用作为例子。
+我们这里首先有个[functions_adb.bat](https://github.com/Seckawijoki/Batch_files/blob/master/tools/functions_adb.bat)作为工具类的bat文件的代码，里面总共封装了获取连接的设备列表、推送文件、安装apk、启动app共4个函数：
 ```bat
 @echo off
 set exeAdb=F:\AndroidSDK\platform-tools\adb.exe
@@ -69,7 +69,7 @@ goto :eof
 exit /b
 ```
 
-������裬������Ҫ��ȡ���ӵĶ����׿������Ȼ��ָ����apk��һ��װ�����������ϣ���������ôһ�δ��룺
+而后假设，我们需要获取连接的多个安卓机器，然后将指定的apk逐一安装到各个机子上，可以有这么一段代码：
 ```bat
 @echo off
 setlocal EnableDelayedExpansion
@@ -82,9 +82,9 @@ for %%d in (!retDevices!) do (
   echo.
 )
 ```
-������Ҫ����`functions_adb.bat`�����ܷ���ʹ�ã����Һ������ܼ�����������ĺ�����
-ֻҪ�������·����`functions_adb.bat`·��һ�������ߵ���ʱƴ������·����
+我们需要保存`functions_adb.bat`，就能方便使用，而且后续还能继续添加所需的函数。
+只要上面这段路径与`functions_adb.bat`路径一样，或者调用时拼接它的路径。
 
-### ��β
+### 结尾
 
-���ڼ򵥵ĺ�����ƣ�����Ϊ�Լ�����һЩ�Ե���������ͨ�õķ�װ�������պ�Ĺ���ʹ�á�
+基于简单的函数设计，可以为自己保存一些对第三方工具通用的封装，方便日后的工作使用。
